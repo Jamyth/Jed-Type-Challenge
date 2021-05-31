@@ -1,7 +1,6 @@
 {
     "name": "jed-type-challenge",
     "version": "1.0.0",
-    "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
         "run-script": "ts-node --project config/tsconfig.script.json",
@@ -16,6 +15,8 @@
     "devDependencies": {
         "@iamyth/logger": "1.0.4",
         "@iamyth/prettier-config": "0.0.1",
+        "@type-challenges/utils": "0.1.1",
+        "@types/mocha": "8.2.2",
         "@types/node": "15.6.1",
         "eslint-config-iamyth": "0.0.6",
         "mocha": "8.4.0",
