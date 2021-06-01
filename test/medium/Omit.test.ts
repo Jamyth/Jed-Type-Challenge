@@ -1,7 +1,7 @@
 import { Equal, Expect, ExpectFalse } from '@type-challenges/utils';
 import { Omit as MyOmit } from '../../src/medium/Omit';
 
-it('Exclude', () => {
+it('Omit', () => {
     type cases = [
         Expect<Equal<Expected1, MyOmit<Todo, 'description'>>>,
         Expect<Equal<Expected2, MyOmit<Todo, 'description' | 'completed'>>>,

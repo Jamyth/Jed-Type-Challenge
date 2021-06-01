@@ -1,7 +1,7 @@
 import { Equal, Expect, ExpectFalse } from '@type-challenges/utils';
 import { Awaited } from '../../src/easy/Awaited';
 
-it('Exclude', () => {
+it('Awaited', () => {
     type X = Promise<string>;
     type Y = Promise<{ field: number }>;
 

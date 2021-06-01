@@ -1,7 +1,7 @@
 import { Equal, Expect, ExpectFalse } from '@type-challenges/utils';
 import { ReturnType } from '../../src/medium/ReturnType';
 
-it('Exclude', () => {
+it('ReturnType', () => {
     type cases = [
         Expect<Equal<string, ReturnType<() => string>>>,
         Expect<Equal<123, ReturnType<() => 123>>>,

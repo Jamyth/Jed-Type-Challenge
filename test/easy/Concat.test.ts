@@ -1,7 +1,7 @@
 import { Equal, Expect, ExpectFalse } from '@type-challenges/utils';
 import { Concat } from '../../src/easy/Concat';
 
-it('If', () => {
+it('Concat', () => {
     type cases = [
         Expect<Equal<Concat<[], []>, []>>,
         Expect<Equal<Concat<[], [1]>, [1]>>,

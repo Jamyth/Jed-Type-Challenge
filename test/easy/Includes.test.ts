@@ -1,7 +1,7 @@
 import { Equal, Expect, ExpectFalse } from '@type-challenges/utils';
 import { Includes } from '../../src/easy/Includes';
 
-it('If', () => {
+it('Includes', () => {
     type cases = [
         Expect<Equal<Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Kars'>, true>>,
         Expect<Equal<Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Dio'>, false>>,
