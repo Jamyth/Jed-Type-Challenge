@@ -7,13 +7,15 @@ export type QueryStringParser<T extends string> = T extends `${infer Key}=${infe
               : QueryStringParser<Rest>[K];
       }
     : T extends `${infer FirstKey}&${infer SecondKey}`
-    ? SecondKey extends `${infer Key}=${infer Value}`
-        ? { [K in FirstKey | Key]: K extends Key ? Value : true }
-        : { [K in FirstKey | SecondKey]: true }
+    ? {
+          [K in FirstKey | keyof QueryStringParser<SecondKey>]: K extends FirstKey
+              ? true extends QueryStringParser<SecondKey>[K]
+                  ? true
+                  : [true, QueryStringParser<SecondKey>[K]]
+              : QueryStringParser<SecondKey>[K];
+      }
     : T extends `${infer Key}=${infer Value}`
     ? { [K in Key]: Value }
     : T extends ''
     ? {}
     : { [Key in T]: true };
-
-type R = QueryStringParser<'k1&k2=v2'>;
