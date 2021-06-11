@@ -38,6 +38,3 @@ export type Slice<Array extends any[], StartIndex extends number = 0, EndIndex e
             ? GenerateNegativeArray<Array['length'], EndIndex>
             : GenerateAnyArray<EndIndex>
     >;
-
-type Arr = [1, 2, 3, 4, 5];
-type R = Slice<Arr, 0, 4>;
