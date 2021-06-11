@@ -1,21 +1,19 @@
-export type QueryStringParser<T extends string> = T extends `${infer Key}=${infer Value}&${infer Rest}`
+export type QueryStringParser<T extends string> = T extends `${infer FirstPair}&${infer Rest}`
     ? {
-          [K in Key | keyof QueryStringParser<Rest>]: K extends Key
-              ? Value extends QueryStringParser<Rest>[K]
-                  ? Value
-                  : [Value, QueryStringParser<Rest>[K]]
-              : QueryStringParser<Rest>[K];
-      }
-    : T extends `${infer FirstKey}&${infer SecondKey}`
-    ? {
-          [K in FirstKey | keyof QueryStringParser<SecondKey>]: K extends FirstKey
-              ? true extends QueryStringParser<SecondKey>[K]
-                  ? true
-                  : [true, QueryStringParser<SecondKey>[K]]
-              : QueryStringParser<SecondKey>[K];
+          [P in
+              | keyof QueryStringParser<FirstPair>
+              | keyof QueryStringParser<Rest>]: P extends keyof QueryStringParser<FirstPair>
+              ? P extends keyof QueryStringParser<Rest>
+                  ? QueryStringParser<FirstPair>[P] extends QueryStringParser<Rest>[P]
+                      ? QueryStringParser<Rest>[P]
+                      : [QueryStringParser<FirstPair>[P], QueryStringParser<Rest>[P]]
+                  : QueryStringParser<FirstPair>[P]
+              : P extends keyof QueryStringParser<Rest>
+              ? QueryStringParser<Rest>[P]
+              : never;
       }
     : T extends `${infer Key}=${infer Value}`
-    ? { [K in Key]: Value }
+    ? { [P in Key]: Value }
     : T extends ''
     ? {}
-    : { [Key in T]: true };
+    : { [K in T]: true };
