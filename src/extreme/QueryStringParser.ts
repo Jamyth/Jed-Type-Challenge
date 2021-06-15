@@ -6,6 +6,8 @@ export type QueryStringParser<T extends string> = T extends `${infer FirstPair}&
               ? P extends keyof QueryStringParser<Rest>
                   ? QueryStringParser<FirstPair>[P] extends QueryStringParser<Rest>[P]
                       ? QueryStringParser<Rest>[P]
+                      : QueryStringParser<Rest>[P] extends [infer A, ...infer B]
+                      ? [QueryStringParser<FirstPair>[P], A, ...B]
                       : [QueryStringParser<FirstPair>[P], QueryStringParser<Rest>[P]]
                   : QueryStringParser<FirstPair>[P]
               : P extends keyof QueryStringParser<Rest>
