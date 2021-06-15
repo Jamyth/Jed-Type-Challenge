@@ -21,5 +21,3 @@ export type QueryStringParser<T extends string> = T extends `${infer FirstPair}&
     : T extends ''
     ? {}
     : { [K in T]: true };
-
-type R = QueryStringParser<'k1&k1&k1=false&k2&k1=3&k1'>;
