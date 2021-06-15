@@ -16,6 +16,6 @@ it('QueryStringParser', () => {
         Expect<Equal<QueryStringParser<'k1&k2=v2'>, { k1: true; k2: 'v2' }>>,
         Expect<Equal<QueryStringParser<'k2=v2&k1'>, { k1: true; k2: 'v2' }>>,
         Expect<Equal<QueryStringParser<'k1&k1&k2=v2'>, { k1: true; k2: 'v2' }>>,
-        Expect<Equal<QueryStringParser<'k1&k1&k1=false&k2&k1=3'>, { k1: [true, true, 'false', '3']; k2: true }>>,
+        Expect<Equal<QueryStringParser<'k1&k1&k1=false&k2&k1=3'>, { k1: [true, 'false', '3']; k2: true }>>,
     ];
 });
